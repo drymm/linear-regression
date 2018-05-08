@@ -1,4 +1,4 @@
-import sys
+import sys, json
 
 def main(lr):
 
@@ -10,9 +10,13 @@ def main(lr):
 	y=float(sys.argv[2])
 
 	if not isinstance(x, float) or not isinstance(y, float):
-            raise TypeError("x and y must be type float")
+		raise TypeError("x and y must be type float")
 
 	output = x*w1 - y*w2 + b
+
+	with open('dominostats.json', 'w') as f:
+		f.write(json.dumps({"diag": output}))
+
 	print(output)
 	return output
 
